@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/sequential.dir/main.cpp.o  -o sequential 

@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/sequential_recalentamiento.dir/main.cpp.o  -o sequential_recalentamiento  -L/usr/local/include/mongocxx/v_noabi  -L/usr/local/include/bsoncxx/v_noabi -Wl,-rpath,/usr/local/include/mongocxx/v_noabi:/usr/local/include/bsoncxx/v_noabi:/usr/local/lib /usr/local/lib/libmongocxx.so /usr/local/lib/libbsoncxx.so 

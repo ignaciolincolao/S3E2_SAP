@@ -47,10 +47,10 @@ RM = /home/ignacio/clion-2019.3.2/bin/cmake/linux/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ignacio/Proyectos/S3E2_SAP/recocido_simulado_paralelizado
+CMAKE_SOURCE_DIR = /home/ignacio/Proyectos/S3E2_SAP/recocido_simulado_paralelizado_v2
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ignacio/Proyectos/S3E2_SAP/recocido_simulado_paralelizado/cmake-build-debug
+CMAKE_BINARY_DIR = /home/ignacio/Proyectos/S3E2_SAP/recocido_simulado_paralelizado_v2/cmake-build-debug
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -77,14 +77,14 @@ preinstall:
 CMakeFiles/paralelizado.dir/all:
 	$(MAKE) -f CMakeFiles/paralelizado.dir/build.make CMakeFiles/paralelizado.dir/depend
 	$(MAKE) -f CMakeFiles/paralelizado.dir/build.make CMakeFiles/paralelizado.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ignacio/Proyectos/S3E2_SAP/recocido_simulado_paralelizado/cmake-build-debug/CMakeFiles --progress-num=1,2 "Built target paralelizado"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ignacio/Proyectos/S3E2_SAP/recocido_simulado_paralelizado_v2/cmake-build-debug/CMakeFiles --progress-num=1,2 "Built target paralelizado"
 .PHONY : CMakeFiles/paralelizado.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/paralelizado.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ignacio/Proyectos/S3E2_SAP/recocido_simulado_paralelizado/cmake-build-debug/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ignacio/Proyectos/S3E2_SAP/recocido_simulado_paralelizado_v2/cmake-build-debug/CMakeFiles 2
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/paralelizado.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ignacio/Proyectos/S3E2_SAP/recocido_simulado_paralelizado/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ignacio/Proyectos/S3E2_SAP/recocido_simulado_paralelizado_v2/cmake-build-debug/CMakeFiles 0
 .PHONY : CMakeFiles/paralelizado.dir/rule
 
 # Convenience name for target.

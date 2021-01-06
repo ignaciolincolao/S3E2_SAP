@@ -1,0 +1,4 @@
+recocido_simulado_paralelizado: escoge el mejor resultado, vector de escuelas es el mismo en cada estudiante
+recocido_simulado_paralelizado_v2: escoge el primer mejor resultado vector de escuelas es el mismo en cada estudiante
+recocido simulado paralelizado_v3: escoge el mejor resultado, vector de escuelas es diferente para cada estudiante
+recocido simulado paralelizado_v4: escoge el mejor resultado, vector de escuelas es el mismo en cada estudiante (selección paralela corregida)

@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CUDA
-  "/home/ignacio/Proyectos/S3E2_SAP/recocido_simulado_paralelizado/main.cu" "/home/ignacio/Proyectos/S3E2_SAP/recocido_simulado_paralelizado/cmake-build-debug/CMakeFiles/paralelizado.dir/main.cu.o"
+  "/home/ignacio/Proyectos/S3E2_SAP/recocido_simulado_paralelizado_v2/main.cu" "/home/ignacio/Proyectos/S3E2_SAP/recocido_simulado_paralelizado_v2/cmake-build-debug/CMakeFiles/paralelizado.dir/main.cu.o"
   )
 set(CMAKE_CUDA_COMPILER_ID "NVIDIA")
 

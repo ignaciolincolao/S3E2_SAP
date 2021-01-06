@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/home/ignacio/Proyectos/S3E2_SAP/recocido_simulado_paralelizado_v4_simulaciones de test/build",
+  "command": "/opt/cuda/bin/nvcc -forward-unknown-to-host-compiler   -O3 -DNDEBUG -std=c++11 -x cu -c \"/home/ignacio/Proyectos/S3E2_SAP/recocido_simulado_paralelizado_v4_simulaciones de test/main.cu\" -o CMakeFiles/paralelizado.dir/main.cu.o",
+  "file": "/home/ignacio/Proyectos/S3E2_SAP/recocido_simulado_paralelizado_v4_simulaciones de test/main.cu"
+}
+]

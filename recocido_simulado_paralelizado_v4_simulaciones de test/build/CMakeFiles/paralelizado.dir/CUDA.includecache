@@ -1,0 +1,42 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/ignacio/Proyectos/S3E2_SAP/recocido_simulado_paralelizado_v4_simulaciones de test/UTM.h
+math.h
+-
+
+/home/ignacio/Proyectos/S3E2_SAP/recocido_simulado_paralelizado_v4_simulaciones de test/main.cu
+iostream
+-
+cmath
+-
+ctime
+-
+random
+-
+cstdlib
+-
+cstdint
+-
+fstream
+-
+string
+-
+sstream
+-
+stdio.h
+-
+cuda.h
+-
+chrono
+-
+UTM.h
+/home/ignacio/Proyectos/S3E2_SAP/recocido_simulado_paralelizado_v4_simulaciones de test/UTM.h
+iomanip
+-
+

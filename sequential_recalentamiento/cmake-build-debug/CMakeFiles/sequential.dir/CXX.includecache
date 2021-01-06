@@ -1,0 +1,36 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/ignacio/Proyectos/S3E2_SAP/sequential_recalentamiento/main.cpp
+iostream
+-
+cmath
+-
+ctime
+-
+cstdlib
+-
+cstdint
+-
+stdio.h
+-
+sstream
+-
+random
+-
+fstream
+-
+iomanip
+-
+chrono
+-
+iostream
+-
+string
+-
+

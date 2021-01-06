@@ -232,10 +232,10 @@ double alpha3 = 25; // Alpha de costocupo
 double coolingRate = 0.98; // Tasa de enfriamiento
 double temp = 100000; // Temperatura inicial
 double min_temp = 0.00000009; // Minima temperatura que puede llegar
-int n_block = 32; // Numero de blockes = numeros de alumnos aleatorios
-int n_thread = 1; // Numero de threads por bloque = numeros de escuelas aleatorios
+int n_block = 256; // Numero de blockes = numeros de alumnos aleatorios
+int n_thread = 85; // Numero de threads por bloque = numeros de escuelas aleatorios
 std::string ruta_save = "./save/"; // Ruta para guardar los archivos
-double k_recalentamiento = 0.994;
+double k_recalentamiento = 0.90;
 double max_temp = 0;
 double e_const=0.01;
 int count_rechaso=0;
@@ -256,7 +256,7 @@ int n_students = 0,
 int *previousSolution= nullptr;
 int *bestSolution= nullptr;
 int *currentSolution=nullptr;
-int seed=12315;//rand();
+int seed= 12315;//rand();
 double max_dist=0.0;
 std::random_device rd;
 std::mt19937 mt(rd());
@@ -726,6 +726,7 @@ int main(int argc, char *argv[]) {
         /// Salida en caso de error
         ///////////////////////////////////////////////////
         //std::cout << costCurrentSolution << "\n";
+
         if(costCurrentSolution<0.00){
             std::cout << shuffle_colegios[selectThread] << "\n";
             std::cout << shuffle_student[selectBlock] << "\n";
@@ -1030,6 +1031,7 @@ void shuffle(int values[], const int max_change, std::uniform_int_distribution<i
         values[randvalue1] = values[randvalue2];
         values[randvalue2] = tem_value;
     }
+    std::cout << randvalue1 << "\n";
 }
 
 

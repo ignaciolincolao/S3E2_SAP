@@ -1,0 +1,3 @@
+/home/ignacio/Proyectos/S3E2_SAP/recocido_simulado_paralelizado_v3/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/ignacio/Proyectos/S3E2_SAP/recocido_simulado_paralelizado_v3/cmake-build-debug/CMakeFiles/paralelizado.dir
+/home/ignacio/Proyectos/S3E2_SAP/recocido_simulado_paralelizado_v3/cmake-build-debug/CMakeFiles/edit_cache.dir

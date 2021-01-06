@@ -1,0 +1,17 @@
+Tiempo antes iniciar el ciclo7
+Tiempo despues de finalizar el ciclo7
+--------------- Resultado Final con restauración----------------
+Numero de Ciclos: 102001
+Costo de la solución previa: 0.0907246
+Costo de la mejor solución: 0.0907246
+Costo de la solución actual: 0.0907433
+Tiempo de ejecución de SA: 449.017459
+distancia: 3.340398356
+Segregación: 0.042810234
+CostoCupo: 0.008786945
+distancia * alpha: 1.113466119
+Segregación * alpha: 0.014270078
+CostoCupo * alpha: 0.002928982
+solución calculada aparte: 0.090724591
+Numero de bloques: 128| Numeros de thread: 1
+--------------- Finalizo con exito ----------------
