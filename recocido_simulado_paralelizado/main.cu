@@ -229,7 +229,7 @@ __global__ void reduce_block_kernel(
 double alpha1 = 15; // Alpha de distancia
 double alpha2 = 30; // Alpha de segregación
 double alpha3 = 25; // Alpha de costocupo
-double coolingRate = 0.98; // Tasa de enfriamiento
+double coolingRate = 0.998; // Tasa de enfriamiento
 double temp = 100000; // Temperatura inicial
 double min_temp = 0.00000009; // Minima temperatura que puede llegar
 int n_block = 256; // Numero de blockes = numeros de alumnos aleatorios
@@ -256,7 +256,7 @@ int n_students = 0,
 int *previousSolution= nullptr;
 int *bestSolution= nullptr;
 int *currentSolution=nullptr;
-int seed= 12315;//rand();
+int seed= 643789267;//rand();
 double max_dist=0.0;
 std::random_device rd;
 std::mt19937 mt(rd());
@@ -616,6 +616,22 @@ int main(int argc, char *argv[]) {
     std::vector<double> vector_costoCupo;
     std::vector<double> vector_temp;
     std::vector<int> vector_count;
+
+    ///////////////////////////////////
+    ///// Vectores de seguimiento
+    ///////////////////////////////////
+    std::vector<double> vector_historyCostSolution;
+    std::vector<double> vector_historyTemp;
+    std::vector<double> vector_historymeanDist;
+    std::vector<double> vector_historymeanDistNorm;
+    std::vector<double> vector_historySegregation;
+    std::vector<double> vector_historycostoCupo;
+    std::vector<bool> vector_historyAcceptSolution;
+    std::vector<int> vector_historyAsign;
+    std::vector<std::tuple <int,int>> vector_historyMove;
+
+
+
     int reheating = 0;
     int c_accepta = 0;
     count++;
@@ -712,7 +728,7 @@ int main(int argc, char *argv[]) {
         ///  Actualizo datos basicos
         ///////////////////////////////////////////////////
 
-
+        vector_historyAsign.push_back(currentSolution[shuffle_student[selectBlock]]);           
         aluxcol[currentSolution[shuffle_student[selectBlock]]]-=1; ///
         aluVulxCol[currentSolution[shuffle_student[selectBlock]]]-=alumnosSep[shuffle_student[selectBlock]]; ///
         aluxcol[shuffle_colegios[selectThread]]+=1; ///
@@ -806,6 +822,20 @@ int main(int argc, char *argv[]) {
         ///////////////////////////////////////////////////
         /// Reinicio de temperatura
         ///////////////////////////////////////////////////
+        vector_historyCostSolution.push_back(costCurrentSolution);
+        vector_historyTemp.push_back(temp);
+        vector_historymeanDist.push_back(meanDist(currentSolution));
+        vector_historymeanDistNorm.push_back(meanDist(currentSolution)/max_dist);
+        vector_historySegregation.push_back(S(currentSolution));
+        vector_historycostoCupo.push_back(costCupo(currentSolution));
+        if(count_rechaso==0){
+            vector_historyAcceptSolution.push_back(1);
+        }
+        else{
+            vector_historyAcceptSolution.push_back(0);
+        }
+        
+        vector_historyMove.push_back(std::tuple<int,int>(shuffle_colegios[selectThread],shuffle_student[selectBlock]));
 
         count++;
     }
@@ -864,13 +894,32 @@ int main(int argc, char *argv[]) {
 
 
 
-    std::ofstream studentscsv,schoolcsv, info_test;
+    std::ofstream studentscsv,schoolcsv, info_test,historyMoves;
 
     std::string nameinfo_test = ruta_save + prefijo_save +"-info_test.txt"; // concatenar
     info_test.open(nameinfo_test);
     info_test << std::fixed << time_taken << std::setprecision(9) << "," << costBestSolution << "," << meanDist(bestSolution) << "," << S(bestSolution) << "," << costCupo(bestSolution) << ","<< n_block << "," << n_thread << "," << count << "," << std::fixed << temp << std::setprecision(13) << "," << min_temp << "," << coolingRate << "," << k_recalentamiento << "," << alpha1 << "," << alpha2 << "," << alpha3 << "," << seed <<  "," << timeCuda/1000 << "\n";
     info_test.close();
 
+
+    std::string nameHistory_File = ruta_save+prefijo_save+"-historyMoves.txt";
+    historyMoves.open(nameHistory_File);
+    for(x=0; x<vector_historyCostSolution.size(); x++)
+    {
+        historyMoves << std::fixed << vector_historyCostSolution.at(x) 
+        << std::setprecision(20) << "," 
+        << vector_historyTemp.at(x) << "," 
+        << vector_historymeanDist.at(x) << "," 
+        << vector_historymeanDistNorm.at(x) << "," 
+        << vector_historySegregation.at(x) << "," 
+        << vector_historycostoCupo.at(x) << "," 
+        << vector_historyAcceptSolution.at(x) << "," 
+        << std::get<1>(vector_historyMove.at(x)) << ","  // Estudiante
+        << vector_historyAsign.at(x) << ","  // Colegio Original
+        << std::get<0>(vector_historyMove.at(x)) << ","  // Colegio al que se movio
+        << seed << std::endl;
+    }
+    historyMoves.close();
 
     std::cout << "-------------- Archivos Guardado ------------------" << "\n";
 
@@ -893,11 +942,11 @@ int main(int argc, char *argv[]) {
 ///////////////////////////////////////////////////
 double calCosto(const int currentThreadSolution[]){
     double var1 = meanDist(currentThreadSolution)/max_dist;
-    std::cout << "distancia: " << var1 << "\n";
+    //std::cout << "distancia: " << var1 << "\n";
     double var2 = S(currentThreadSolution);
-    std::cout << "Segregación: " << var2 << "\n";
+    //std::cout << "Segregación: " << var2 << "\n";
     double var3 = costCupo(currentThreadSolution);
-    std::cout << "CostoCupo: " << var3 << "\n";
+    //std::cout << "CostoCupo: " << var3 << "\n";
     return (double)((alpha[0]*var1)+(alpha[1]*var2)+(alpha[2]*var3));
 }
 
@@ -1031,7 +1080,7 @@ void shuffle(int values[], const int max_change, std::uniform_int_distribution<i
         values[randvalue1] = values[randvalue2];
         values[randvalue2] = tem_value;
     }
-    std::cout << randvalue1 << "\n";
+    //std::cout << randvalue1 << "\n";
 }
 
 
