@@ -10,7 +10,6 @@
 #include <stdio.h>
 #include <cuda.h>
 #include <chrono>
-#include "UTM.h"
 #include <iomanip>
 
 ///////////////////////////////////////////////////
@@ -229,11 +228,11 @@ __global__ void reduce_block_kernel(
 double alpha1 = 15; // Alpha de distancia
 double alpha2 = 30; // Alpha de segregación
 double alpha3 = 25; // Alpha de costocupo
-double coolingRate = 0.998; // Tasa de enfriamiento
+double coolingRate = 0.98; // Tasa de enfriamiento
 double temp = 100000; // Temperatura inicial
 double min_temp = 0.00000009; // Minima temperatura que puede llegar
-int n_block = 256; // Numero de blockes = numeros de alumnos aleatorios
-int n_thread = 85; // Numero de threads por bloque = numeros de escuelas aleatorios
+int n_block = 1024; // Numero de blockes = numeros de alumnos aleatorios
+int n_thread = 1; // Numero de threads por bloque = numeros de escuelas aleatorios
 std::string ruta_save = "./save/"; // Ruta para guardar los archivos
 double k_recalentamiento = 0.90;
 double max_temp = 0;
@@ -269,6 +268,7 @@ std::uniform_int_distribution<int> dist2(0,0);
 ///////////////////////////////////////////////////
 
 int main(int argc, char *argv[]) {
+    std::cout << "Actualizo valores " << std::endl;
     time_t hora_actual;
     struct tm *time_info;
     time(&hora_actual);
@@ -315,7 +315,7 @@ int main(int argc, char *argv[]) {
     std::ifstream info_school("colegios_utm.txt"); // concatenar
     std::getline(info_school, line_colegios);
     n_colegios = std::stoi(line_colegios);
-    Info_colegio colegios[n_colegios];
+    Info_colegio* colegios = (Info_colegio*)malloc(n_colegios * sizeof(Info_colegio));
     ptr_colegios = &colegios[0];
     while (std::getline(info_school, line_colegios)) {
         std::stringstream linestream(line_colegios);
@@ -346,7 +346,7 @@ int main(int argc, char *argv[]) {
 
     std::getline(info_student, line_student);
     n_students = std::stoi(line_student);
-    Info_alu students[n_students];
+    Info_alu* students = (Info_alu*)malloc(n_students * sizeof(Info_alu));
     ptr_students = &students[0];
     while (std::getline(info_student, line_student)) {
         std::stringstream linestream(line_student);
@@ -465,11 +465,14 @@ int main(int argc, char *argv[]) {
     /// Valores para las partes calcular la nueva solucion
     ///////////////////////////////////////////////////
 
-    int aluVulxCol[n_colegios], aluxcol[n_colegios];
-    int previousAluxCol[n_colegios];
-    int previousAluVulxCol[n_colegios];
-    int bestAluxCol[n_colegios];
-    int bestAluVulxCol[n_colegios];
+
+    int* aluVulxCol = (int*)malloc(sizeof(int) * n_colegios);
+    int* aluxcol = (int*)malloc(sizeof(int) * n_colegios);
+    int* previousAluxCol = (int*)malloc(sizeof(int) * n_colegios);
+    int* previousAluVulxCol = (int*)malloc(sizeof(int) * n_colegios);
+    int* bestAluxCol = (int*)malloc(sizeof(int) * n_colegios);
+    int* bestAluVulxCol = (int*)malloc(sizeof(int) * n_colegios);
+
 
     for(x = 0; x < n_colegios; x++){
         aluxcol[x] = colegios[x].num_alu;
@@ -628,17 +631,13 @@ int main(int argc, char *argv[]) {
     std::vector<double> vector_historycostoCupo;
     std::vector<bool> vector_historyAcceptSolution;
     std::vector<int> vector_historyAsign;
-    std::vector<std::tuple <int,int>> vector_historyMove;
+    //std::vector<std::tuple <int,int>> vector_historyMove;
 
 
 
-    int reheating = 0;
     int c_accepta = 0;
     count++;
     double timeCuda = 0.0;
-    int valmaxheating=25;
-    int count_reheating = 0;
-    double bestTemp = 0;
 
     ///////////////////////////////////////////////////
     /// Comienza a ejecutarse el algoritmo de SA
@@ -822,20 +821,20 @@ int main(int argc, char *argv[]) {
         ///////////////////////////////////////////////////
         /// Reinicio de temperatura
         ///////////////////////////////////////////////////
-        vector_historyCostSolution.push_back(costCurrentSolution);
-        vector_historyTemp.push_back(temp);
-        vector_historymeanDist.push_back(meanDist(currentSolution));
-        vector_historymeanDistNorm.push_back(meanDist(currentSolution)/max_dist);
-        vector_historySegregation.push_back(S(currentSolution));
-        vector_historycostoCupo.push_back(costCupo(currentSolution));
-        if(count_rechaso==0){
-            vector_historyAcceptSolution.push_back(1);
-        }
-        else{
-            vector_historyAcceptSolution.push_back(0);
-        }
+        //vector_historyCostSolution.push_back(costCurrentSolution);
+        //vector_historyTemp.push_back(temp);
+        //vector_historymeanDist.push_back(meanDist(currentSolution));
+        //vector_historymeanDistNorm.push_back(meanDist(currentSolution)/max_dist);
+        //vector_historySegregation.push_back(S(currentSolution));
+        //vector_historycostoCupo.push_back(costCupo(currentSolution));
+        //if(count_rechaso==0){
+        //    vector_historyAcceptSolution.push_back(1);
+        //}
+        //else{
+        //    vector_historyAcceptSolution.push_back(0);
+        //}
         
-        vector_historyMove.push_back(std::tuple<int,int>(shuffle_colegios[selectThread],shuffle_student[selectBlock]));
+        //vector_historyMove.push_back(std::tuple<int,int>(shuffle_colegios[selectThread],shuffle_student[selectBlock]));
 
         count++;
     }
@@ -914,9 +913,9 @@ int main(int argc, char *argv[]) {
         << vector_historySegregation.at(x) << "," 
         << vector_historycostoCupo.at(x) << "," 
         << vector_historyAcceptSolution.at(x) << "," 
-        << std::get<1>(vector_historyMove.at(x)) << ","  // Estudiante
+        //<< std::get<1>(vector_historyMove.at(x)) << ","  // Estudiante
         << vector_historyAsign.at(x) << ","  // Colegio Original
-        << std::get<0>(vector_historyMove.at(x)) << ","  // Colegio al que se movio
+        //<< std::get<0>(vector_historyMove.at(x)) << ","  // Colegio al que se movio
         << seed << std::endl;
     }
     historyMoves.close();

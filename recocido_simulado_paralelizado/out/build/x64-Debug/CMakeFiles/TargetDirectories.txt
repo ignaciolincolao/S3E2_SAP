@@ -1,0 +1,3 @@
+C:/Users/ilinc/OneDrive/Escritorio/Proyectos/S3E2_SAP/recocido_simulado_paralelizado/out/build/x64-Debug/CMakeFiles/paralelizado.dir
+C:/Users/ilinc/OneDrive/Escritorio/Proyectos/S3E2_SAP/recocido_simulado_paralelizado/out/build/x64-Debug/CMakeFiles/edit_cache.dir
+C:/Users/ilinc/OneDrive/Escritorio/Proyectos/S3E2_SAP/recocido_simulado_paralelizado/out/build/x64-Debug/CMakeFiles/rebuild_cache.dir

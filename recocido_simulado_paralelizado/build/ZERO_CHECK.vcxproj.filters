@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\ilinc\OneDrive\Escritorio\Proyectos\S3E2_SAP\recocido_simulado_paralelizado\build\CMakeFiles\12789c4a198918ce0e23b8162ea008b6\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{E2E2EF5B-552B-3952-8A1B-63E336432F9B}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

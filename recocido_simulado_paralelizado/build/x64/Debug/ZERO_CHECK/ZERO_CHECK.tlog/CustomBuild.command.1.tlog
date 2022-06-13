@@ -1,0 +1,10 @@
+^C:\USERS\ILINC\ONEDRIVE\ESCRITORIO\PROYECTOS\S3E2_SAP\RECOCIDO_SIMULADO_PARALELIZADO\BUILD\CMAKEFILES\12789C4A198918CE0E23B8162EA008B6\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/ilinc/OneDrive/Escritorio/Proyectos/S3E2_SAP/recocido_simulado_paralelizado -BC:/Users/ilinc/OneDrive/Escritorio/Proyectos/S3E2_SAP/recocido_simulado_paralelizado/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/ilinc/OneDrive/Escritorio/Proyectos/S3E2_SAP/recocido_simulado_paralelizado/build/paralelizado.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

@@ -1,0 +1,5 @@
+# ninja log v5
+1	7915	6768554625688181	CMakeFiles/paralelizado.dir/main.cu.obj	867ea1445c06894e
+7919	8170	6768554628388174	paralelizado.exe	10b9f0a45b5596bc
+2	9626	6768562775684318	CMakeFiles/paralelizado.dir/main.cu.obj	867ea1445c06894e
+9627	9852	6768562778096514	paralelizado.exe	10b9f0a45b5596bc

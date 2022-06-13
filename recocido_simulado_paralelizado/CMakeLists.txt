@@ -9,4 +9,4 @@ set(CMAKE_VERBOSE_MAKEFILE TRUE)
 
 add_executable(paralelizado main.cu)
 
-target_link_libraries(paralelizado  ${CMAKE_SOURCE_DIR}/UTM.cpp)
+target_link_libraries(paralelizado)
