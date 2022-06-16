@@ -1,0 +1,1 @@
+/opt/cuda/bin/g++  CMakeFiles/paralelizado.dir/main.cu.o -o paralelizado ../UTM.cpp  -L"/opt/cuda/targets/x86_64-linux/lib/stubs" -L"/opt/cuda/targets/x86_64-linux/lib" -lcudadevrt -lcudart_static -lrt -lpthread -ldl
